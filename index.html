@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>drow</title>
+</head>
+<style>
+  /* الخصائص العامة للصفحة */
+body {
+    margin: 0; /* إزالة هامش الصفحة */
+    padding: 0; /* إزالة حواف الصفحة */
+    background-color: #f4f4f4; /* لون الخلفية */
+    font-family: 'Arial', sans-serif; /* نوع الخط */
+    display: flex; /* نمط العرض */
+    flex-direction: column; /* اتجاه العرض */
+    align-items: center; /* توسيع العناصر على المحور الرأسي */
+    justify-content: center; /* توسيع العناصر على المحور الأفقي */
+    min-height: 100vh; /* ارتفاع العرض الأدنى بالشاشة */
+}
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* العنوان */
+h3 {
+    text-align: center; /* محاذاة النص إلى الوسط */
+    font-size: 36px; /* حجم الخط */
+    background-color: #333; /* لون الخلفية */
+    color: #fff; /* لون النص */
+    padding: 15px; /* حجم الحواف */
+    border-radius: 12px; /* إنحناء الحواف */
+    margin-bottom: 30px; /* المسافة بين العنوان والمعرض */
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2); /* ظل للعنوان */
+}
+
+/* المعرض */
+.gallery {
+    display: grid; /* نمط العرض للمعرض */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* توزيع العناصر */
+    gap: 20px; /* المسافة بين العناصر */
+    max-width: 800px; /* أقصى عرض للمعرض */
+}
+
+/* المربع */
+.artwork {
+    text-align: center; /* محاذاة النص إلى الوسط */
+    pointer-events: none;
+    border: 2px solid #ddd; /* حدود المربع */
+    padding: 15px; /* حجم الحواف */
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.1); /* ظل للمربع */
+    transition: transform 0.2s ease-in-out; /* تحريك ناعم عند التحويل */
+    margin: 10px; /* المسافة بين المربعات */
+    background-color: #fff; /* لون الخلفية للمربع */
+    border-radius: 12px; /* إنحناء الحواف */
+}
+.artwork {
+    /* ... القواعد الأخرى ... */
+    transition: transform 0.3s ease-in-out; /* تحريك ناعم عند التحويل */
+    /* ... القواعد الأخرى ... */
+}
+.artwork {
+    /* ... القواعد الأخرى ... */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* ظل للمربع */
+    /* ... القواعد الأخرى ... */
+}
+.artwork p {
+    /* ... القواعد الأخرى ... */
+    color: #333; /* لون النص */
+    /* ... القواعد الأخرى ... */
+}
+.artwork {
+    /* ... القواعد الأخرى ... */
+    transition-delay: 0.2s; /* تأخير بداية التحول */
+    /* ... القواعد الأخرى ... */
+}
+.artwork:hover {
+    transform: scale(1.1); /* تكبير البطاقة عند تمرير الفأرة */
+    transition: transform 0.3s ease-in-out; /* تأثير تكبير صغر سلس */
+}
+
+/* الصورة داخل المربع */
+.artwork img {
+    width: 100%; /* جعل الصورة تحتل 100% من عرض المربع */
+    height: auto; /* الحفاظ على نسبة الأبعاد الأصلية للصورة */
+    max-height: 100%; /* ضبط حجم الصورة الأقصى */
+    object-fit: cover; /* ضبط عرض الصورة لتغطي المربع بالكامل */
+    pointer-events: none;
+    border-radius: 8px; /* إنحناء الحواف */
+}
+
+/* النص داخل المربع */
+.artwork p {
+    margin-top: 15px; /* المسافة بين النص والصورة */
+    font-size: 18px; /* حجم الخط */
+    color: #555; /* لون النص */
+    font-weight: bold; /* وزن الخط */
+}
+
+/* وسائط الشاشة الصغيرة */
+@media screen and (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* توزيع العناصر بالشاشة الصغيرة */
+        gap: 10px; /* المسافة بين العناصر */
+        max-width: 100%; /* أقصى عرض للمعرض بالشاشة الصغيرة */
+    }
+}
+    /* الخاتمة */
+    .footer {
+        margin-top: 50px; /* المسافة بين المعرض والخاتمة */
+        text-align: center; /* محاذاة النص إلى الوسط */
+        font-size: 20px; /* حجم الخط */
+        color: #555; /* لون النص */
+    }
+
+    /* النص الإضافي */
+    .additional-text {
+        margin-top: 20px; /* المسافة بين الخاتمة والنص الإضافي */
+        text-align: center; /* محاذاة النص إلى الوسط */
+        font-size: 18px; /* حجم الخط */
+        color: #555; /* لون النص */
+        font-weight: bold; /* وزن الخط */
+    }
+
+    /* الرابط */
+    .bio-link {
+        display: block; /* عرض الرابط بشكل كتلة */
+        margin-top: 10px; /* المسافة بين النص الإضافي والرابط */
+        text-align: center; /* محاذاة النص إلى الوسط */
+        font-size: 24px; /* حجم الخط */
+        color: #0066cc; /* لون الرابط */
+        text-decoration: none; /* إزالة تزيين الرابط */
+        font-weight: bold; /* وزن الخط */
+    }
+
+    /* تحويل لون الرابط عند التحويل */
+    .bio-link:hover {
+        color: #0056b3; /* لون الرابط عند التحويل */
+    }
+
+    /* قلب أحمر */
+    .heart {
+        color: #ff0000; /* لون القلب */
+        font-size: 24px; /* حجم الخط */
+        margin-right: 5px; /* المسافة بين القلب والنص */
+    }
+/* وضع النص في الأسفل وسط الشاشة بشكل احترافي */
+.thanks-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    font-size: 24px;
+    color: #fff;
+    background-color: #333;
+    border-radius: 12px;
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+<body>
+  <h3 class="h3">Dyaa | Drow</h3>
+    <div class="gallery">
+        <!-- قم بتكرار هذا العنصر لكل صورة -->
+
+        <div class="artwork">
+            <img src="drow/1.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/2.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/3.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/4.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/5.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/6.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/7.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/8.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/9.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/10.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/11.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/12.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/13.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/14.jpg" alt="Artwork 1">
+        </div>
+                <div class="artwork">
+            <img src="drow/15.jpg" alt="Artwork 1">
+        </div>
+                        <div class="artwork">
+            <img src="drow/16.jpg" alt="Artwork 1">
+        </div>
+        
+    <!-- الخاتمة -->
+    <div class="footer" <span class="heart">&#10084;</span>
+        شكرًا على وقتك
+    </div>
+
+    <!-- النص الإضافي -->
+    <div class="additional-text">
+:هدا موقع به جميع حساباتي
+    </div>
+
+    <!-- الرابط -->
+    <a href="https://bio.link/dyaa" class="bio-link" target="_blank">لزيارة الموقع اضغط هنا</a>
+</body>
+</html>
